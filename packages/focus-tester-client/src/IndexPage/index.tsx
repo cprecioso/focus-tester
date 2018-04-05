@@ -1,6 +1,6 @@
 import { action, computed, observable } from "mobx"
 import { observer } from "mobx-react"
-import { Component } from "react"
+import { Component, Fragment } from "react"
 
 import ImageView from "../ImageView"
 import PointingTable from "../PointingTable"
@@ -13,6 +13,7 @@ declare namespace IndexPage {
     height: number
     subdivisions?: number
     multiplier?: number
+    isDev?: boolean
   }
 }
 
@@ -112,25 +113,25 @@ class IndexPage extends Component<IndexPage.Props> {
             onHover={this.handleHover}
             onLeaveHover={this.handleLeaveHover}
           />
-          {!this.props.subdivisions && (
-            <input
-              type="range"
-              min="1"
-              max="10"
-              step="1"
-              value={this.subdivisions}
-              onChange={this.handleSubdivisions}
-            />
-          )}
-          {!this.props.multiplier && (
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.1"
-              value={this.multiplier}
-              onChange={this.handleMultiplier}
-            />
+          {this.props.isDev && (
+            <Fragment>
+              <input
+                type="range"
+                min="1"
+                max="10"
+                step="1"
+                value={this.subdivisions}
+                onChange={this.handleSubdivisions}
+              />
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.1"
+                value={this.multiplier}
+                onChange={this.handleMultiplier}
+              />
+            </Fragment>
           )}
           <div className="buttons">
             <button>restart</button>
