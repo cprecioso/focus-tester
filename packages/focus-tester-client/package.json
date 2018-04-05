@@ -1,0 +1,22 @@
+{
+  "name": "focus-tester",
+  "version": "0.0.0",
+  "dependencies": {
+    "@zeit/next-typescript": "^0.1.1",
+    "lodash": "^4.17.5",
+    "mobx": "^4.1.1",
+    "mobx-react": "^5.0.0",
+    "next": "^5.1.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "styled-jsx": "^2.2.6",
+    "typescript": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.106",
+    "@types/next": "^2.4.8",
+    "@types/react": "^16.3.5",
+    "@types/react-dom": "^16.0.4",
+    "@types/styled-jsx": "^2.2.2"
+  }
+}
