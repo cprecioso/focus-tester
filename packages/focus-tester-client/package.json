@@ -1,6 +1,6 @@
 {
   "name": "focus-tester",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "@zeit/next-typescript": "^0.1.1",
     "lodash": "^4.17.5",
