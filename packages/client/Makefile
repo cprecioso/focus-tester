@@ -13,7 +13,7 @@ clean:
 .PHONY: bootstrap
 bootstrap: node_modules
 
-node_modules: yarn.lock package.json
+node_modules: package.json
 	yarn install
 
 .PHONY: dev
