@@ -1,0 +1,11 @@
+{
+  "name": "focus-tester-server",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "json-server db.json"
+  },
+  "dependencies": {
+    "json-server": "^0.12.1"
+  }
+}
