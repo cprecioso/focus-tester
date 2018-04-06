@@ -1,5 +1,8 @@
+import "cross-fetch/polyfill"
+
 import { createElement } from "react"
 
+import { image, server } from "../src/config"
 import IndexPage from "../src/IndexPage"
 
 function IndexPageWrapper(props: IndexPage.Props) {
@@ -12,14 +15,13 @@ namespace IndexPageWrapper {
   }: {
     query: { [name: string]: string }
   }): Promise<IndexPage.Props> {
-    return {
-      image: "/static/pic.jpg",
-      width: 7609,
-      height: 8157,
-      multiplier: 0.9,
-      subdivisions: 6,
-      isDev: !!query.dev
+    const isDev = !!query.dev
+    const response = await fetch(`${server}/startInfo/`)
+    const json = (await response.json()) as {
+      multiplier: number
+      subdivisions: number
     }
+    return { ...image, ...json, isDev }
   }
 }
 
