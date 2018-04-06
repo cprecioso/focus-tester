@@ -5,6 +5,7 @@ import { Component, Fragment } from "react"
 import ImageView from "../ImageView"
 import PointingTable from "../PointingTable"
 import { style } from "./styles"
+import timers from "../timers"
 
 declare namespace IndexPage {
   interface Props {
@@ -47,6 +48,7 @@ class IndexPage extends Component<IndexPage.Props> {
 
   componentDidMount() {
     this.updateWindowSize()
+    timers.setupReporting()
   }
 
   @computed
@@ -84,12 +86,14 @@ class IndexPage extends Component<IndexPage.Props> {
   handleHover: PointingTable.Events["onHover"] = (i, j) => {
     this.currentIndex.i = i
     this.currentIndex.j = j
+    timers.startTimer(i * this.subdivisions + j)
   }
 
   @action
   handleLeaveHover = () => {
     this.currentIndex.i = undefined
     this.currentIndex.j = undefined
+    timers.stopTimer()
   }
 
   @action
@@ -133,10 +137,6 @@ class IndexPage extends Component<IndexPage.Props> {
               />
             </Fragment>
           )}
-          <div className="buttons">
-            <button>restart</button>
-            <button>finish</button>
-          </div>
         </div>
         <ImageView
           width={this.pictureDimensions.width}
