@@ -1,28 +1,28 @@
 import "cross-fetch/polyfill"
 
-import { createElement } from "react"
+import { createElement, SFC } from "react"
 
-import { image, server } from "../src/config"
+import { server } from "../src/config"
 import IndexPage from "../src/IndexPage"
+import Model from "../src/models"
+import { Omit } from "../src/util"
 
-function IndexPageWrapper(props: IndexPage.Props) {
-  return createElement(IndexPage, props)
+type _Props = Omit<IndexPage.Props, "model"> & { snapshot: Model.Snapshot }
+declare namespace IndexPageWrapper {
+  interface Props extends _Props {}
 }
 
-namespace IndexPageWrapper {
-  export async function getInitialProps({
-    query
-  }: {
-    query: { [name: string]: string }
-  }): Promise<IndexPage.Props> {
-    const isDev = !!query.dev
-    const response = await fetch(`${server}/startInfo/`)
-    const json = (await response.json()) as {
-      multiplier: number
-      subdivisions: number
-    }
-    return { ...image, ...json, isDev }
-  }
+const IndexPageWrapper: SFC<IndexPageWrapper.Props> = ({
+  snapshot,
+  ...props
+}) => {
+  const model = Model.create(snapshot)
+  return createElement(IndexPage, { ...props, model: Model.create(snapshot) })
 }
+
+IndexPageWrapper.getInitialProps = async ({ query }) => ({
+  isDev: !!query.dev,
+  snapshot: await fetch(`${server}/db/`).then(res => res.json())
+})
 
 export default IndexPageWrapper

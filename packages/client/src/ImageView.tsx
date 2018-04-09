@@ -1,48 +1,71 @@
-import { Fragment, SFC } from "react"
+import classnames from "classnames"
+import { observer } from "mobx-react"
+import { SFC } from "react"
+
+import Image from "./models/Image"
+import { Index, indexToCoord } from "./util"
 
 declare namespace ImageView {
   interface Props {
+    image: Image
     width: number
     height: number
-    src: string
-    n: number
-    i: number
-    j: number
-    hide: boolean
+    subdivisions: number
+    n: Index
+    hide?: boolean
+    duration?: number
+    className?: string
   }
 }
 
-const DURATION = 200
+const ImageView = observer<SFC<ImageView.Props>>(
+  ({
+    image,
+    width,
+    height,
+    subdivisions,
+    n,
+    hide = false,
+    duration = 200,
+    className,
+    ...props
+  }) => {
+    const { i, j } = indexToCoord(n, subdivisions)
+    const x = width * (subdivisions - j)
+    const y = height * (subdivisions - i)
 
-const ImageView: SFC<ImageView.Props> = ({
-  width,
-  height,
-  src,
-  n,
-  i,
-  j,
-  hide,
-  ...props
-}) => (
-  <Fragment>
-    <div {...props} className={`image ${(hide && "hidden") || ""}`} />
-    <style jsx>{`
-      .image {
-        display: block;
-        opacity: 1;
-        width: ${width}px;
-        height: ${height}px;
-        background-image: url('${src}');
-        background-size: ${width * n}px ${height * n}px;
-        background-position: ${width * (n - j)}px ${width * (n - i)}px;
-        transition: background-position ${DURATION}ms ease-in-out, opacity ${DURATION}ms ease-in-out ${DURATION}ms;
-      }
-      .image.hidden {
-        opacity: 0;
-        transition: background-position ${DURATION}ms ease-in-out ${DURATION}ms, opacity ${DURATION}ms ease-in-out;
-      }
-    `}</style>
-  </Fragment>
+    return (
+      <div
+        {...props}
+        className={classnames("image", { hidden: hide }, className)}
+      >
+        <style jsx>{`
+          .image {
+            background-position: ${x}px ${y}px;
+          }
+        `}</style>
+        <style jsx>{`
+          .image {
+            display: block;
+            opacity: 1;
+            width: ${width}px;
+            height: ${height}px;
+            background-size: ${width * subdivisions}px
+              ${height * subdivisions}px;
+            background-image: url(${image.imageUrl});
+            transition: background-position ${duration}ms ease-in-out,
+              opacity ${duration}ms ease-in-out;
+          }
+          .image.hidden {
+            opacity: 0;
+            transition: background-position ${duration}ms ease-in-out
+                ${duration}ms,
+              opacity ${duration}ms ease-in-out;
+          }
+        `}</style>
+      </div>
+    )
+  }
 )
 
 export default ImageView
