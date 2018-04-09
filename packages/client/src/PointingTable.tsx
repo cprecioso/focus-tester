@@ -6,7 +6,6 @@ declare namespace PointingTable {
   interface Events {
     onHover?: (i: number, j: number) => void
     onLeaveHover?: () => void
-    onClick?: (i: number, j: number) => void
   }
   interface Props extends Events {
     subdivisions: number
@@ -43,18 +42,11 @@ class PointingTable extends Component<PointingTable.Props> {
     }
   }
 
-  handleClick: MouseEventHandler = evt => {
-    if (this.props.onClick) {
-      ;(this.props.onClick as any)(...this.extractIndex(evt))
-    }
-  }
-
   render() {
     const {
       subdivisions,
       cellWidth,
       cellHeight,
-      onClick,
       onHover,
       onLeaveHover,
       className
@@ -73,7 +65,6 @@ class PointingTable extends Component<PointingTable.Props> {
                   data-i={i}
                   data-j={j}
                   onMouseEnter={this.handleHover}
-                  onClick={this.handleClick}
                 />
               ))}
             </tr>
