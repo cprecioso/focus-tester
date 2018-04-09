@@ -25,7 +25,7 @@ void (async () => {
       {
         ...URL_QUESTION,
         name: "url",
-        message: "URL service",
+        message: "Service URL",
         default: DEFAULT_URL
       }
     ])
@@ -51,12 +51,10 @@ void (async () => {
     )
 
     console.log("Processing view time")
-    const images = _(data.counter.timers)
-      .map((counter, i) => [i, counter])
-      .sortBy(1)
+    const images = _(data.timers)
+      .sortBy("serverTime")
       .reverse()
-      .map(0)
-      .map(i => resolve(tmpdir, `${i}.jpg`))
+      .map(timer => resolve(tmpdir, `${timer.id}.jpg`))
       .value()
 
     console.log("Creating collage...")
