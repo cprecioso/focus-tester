@@ -9,5 +9,5 @@
     "jsx": "preserve",
     "sourceMap": true
   },
-  "include": ["pages/**/*", "src/**/*"]
+  "include": ["pages/**/*", "src/**/*", "types/**/*"]
 }
