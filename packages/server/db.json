@@ -1,9 +1,152 @@
 {
   "startInfo": {
     "subdivisions": 6,
-    "multiplier": 0.9
+    "multiplier": 0.9,
+    "image": {
+      "url": "/static/pic.jpg",
+      "width": 7609,
+      "height": 8157
+    }
   },
-  "counter": {
-    "timers": []
-  }
+  "timers": [
+    {
+      "id": 0,
+      "serverTime": 15061
+    },
+    {
+      "id": 1,
+      "serverTime": 363
+    },
+    {
+      "id": 2,
+      "serverTime": 1143
+    },
+    {
+      "id": 3,
+      "serverTime": 2127
+    },
+    {
+      "id": 4,
+      "serverTime": 1234
+    },
+    {
+      "id": 5,
+      "serverTime": 1419
+    },
+    {
+      "id": 6,
+      "serverTime": 363
+    },
+    {
+      "id": 7,
+      "serverTime": 546
+    },
+    {
+      "id": 8,
+      "serverTime": 549
+    },
+    {
+      "id": 9,
+      "serverTime": 834
+    },
+    {
+      "id": 10,
+      "serverTime": 1000
+    },
+    {
+      "id": 11,
+      "serverTime": 1118
+    },
+    {
+      "id": 12,
+      "serverTime": 394
+    },
+    {
+      "id": 13,
+      "serverTime": 196
+    },
+    {
+      "id": 14,
+      "serverTime": 4236
+    },
+    {
+      "id": 15,
+      "serverTime": 567
+    },
+    {
+      "id": 16,
+      "serverTime": 1293
+    },
+    {
+      "id": 17,
+      "serverTime": 1140
+    },
+    {
+      "id": 18,
+      "serverTime": 10990
+    },
+    {
+      "id": 19,
+      "serverTime": 282
+    },
+    {
+      "id": 20
+    },
+    {
+      "id": 21
+    },
+    {
+      "id": 22,
+      "serverTime": 780
+    },
+    {
+      "id": 23,
+      "serverTime": 14261
+    },
+    {
+      "id": 24
+    },
+    {
+      "id": 25,
+      "serverTime": 1580
+    },
+    {
+      "id": 26,
+      "serverTime": 385
+    },
+    {
+      "id": 27
+    },
+    {
+      "id": 28,
+      "serverTime": 99
+    },
+    {
+      "id": 29,
+      "serverTime": 87
+    },
+    {
+      "id": 30
+    },
+    {
+      "id": 31,
+      "serverTime": 110
+    },
+    {
+      "id": 32,
+      "serverTime": 937
+    },
+    {
+      "id": 33,
+      "serverTime": 87
+    },
+    {
+      "id": 34,
+      "serverTime": 1677
+    },
+    {
+      "id": 35,
+      "serverTime": 376
+    }
+  ]
 }
